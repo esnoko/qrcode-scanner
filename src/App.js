@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+  const [temp, setTemp] = useState("");
+  const  [word, setWord] = useState("");
+  const [size, setSize] = useState(400);
+  const [bgColor, setBgColor] = useState("ffffff");
+  const [qrCode, setQrCode] = useState("");
+
+  //Change URL only when the user changes the input
+  useEffect(() => {
+    setQrCode('http://api.qrserver.com/v1/create-qr-code/?data=${word}!&size=${size}x${size}&bgcolor=${bgColor}');
+  }, [word, size, bgColor]);
 }
-
-export default App;
